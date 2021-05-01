@@ -5,4 +5,10 @@
     <string name="start">Начать</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_statistic">Ваша статистика</string>
+    <string name="right_answers">Правильные ответы:</string>
+    <string name="wrong_answers">Неправильные ответы:</string>
+    <string name="try_again">Попробовать еще раз</string>
+    <string name="_50_50">50/50</string>
+    <string name="friend_help">Помощь</string>
 </resources>
