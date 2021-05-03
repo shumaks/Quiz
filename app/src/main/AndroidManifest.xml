@@ -3,17 +3,20 @@
     package="com.example.quiz">
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="androidx.multidex.MultiDexApplication"
         android:theme="@style/Theme.Quiz">
+        <activity android:name=".StatisticActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
-        <activity android:name=".EndActivity"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <activity android:name=".EndActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

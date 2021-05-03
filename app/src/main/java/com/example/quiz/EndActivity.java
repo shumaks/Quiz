@@ -9,10 +9,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class EndActivity extends AppCompatActivity {
 
     private TextView textRight, textWrong;
-    private Button buttonStartAgain;
+    private Button buttonShowStatistic;
+    private DatabaseReference mDataBase;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -21,12 +25,19 @@ public class EndActivity extends AppCompatActivity {
         setContentView(R.layout.activity_end);
         textRight = findViewById(R.id.textRight);
         textWrong = findViewById(R.id.textWrong);
-        buttonStartAgain = findViewById(R.id.buttonStartAgain);
+        buttonShowStatistic = findViewById(R.id.buttonShowStatistic);
+        mDataBase = FirebaseDatabase.getInstance().getReference("User");
+
+        MainActivity.currentUser.setRightAnswers(QuestionActivity.rightAnswers);
+        mDataBase.push().setValue(MainActivity.currentUser);
+
         textRight.setText("Правильные ответы: " + QuestionActivity.rightAnswers);
         textWrong.setText("Неправильные ответы: " + QuestionActivity.wrongAnswers);
+
+
         Context context = this.getApplicationContext();
-        buttonStartAgain.setOnClickListener(v -> {
-            Intent intent = new Intent(context, QuestionActivity.class);
+        buttonShowStatistic.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StatisticActivity.class);
             startActivityForResult(intent, 1);
         });
     }

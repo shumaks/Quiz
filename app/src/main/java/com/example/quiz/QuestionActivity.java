@@ -106,6 +106,8 @@ public class QuestionActivity extends AppCompatActivity {
                     quizList.add(question);
                 }
                 Collections.shuffle(quizList);
+                rightAnswers = 0;
+                wrongAnswers = 0;
                 showQuestion(questionNum);
             }
 
@@ -259,11 +261,20 @@ public class QuestionActivity extends AppCompatActivity {
             buttonFriendHelp.setVisibility(View.INVISIBLE);
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Привет! Нужна помощь! Какой правильный ответ?\n" + currentQuestion.getQuestion() + "\n" +
-                    "1. " + currentQuestion.getAnswer1() + "\n" +
-                    "2. " + currentQuestion.getAnswer2() + "\n" +
-                    "3. " + currentQuestion.getAnswer3() + "\n" +
-                    "4. " + currentQuestion.getAnswer4());
+            String answers = "";
+            if (buttonAnswer1.getVisibility() == View.VISIBLE) {
+                answers += "1. " + buttonAnswer1.getText() + "\n";
+            }
+            if (buttonAnswer2.getVisibility() == View.VISIBLE) {
+                answers += "2. " + buttonAnswer2.getText() + "\n";
+            }
+            if (buttonAnswer3.getVisibility() == View.VISIBLE) {
+                answers += "3. " + buttonAnswer3.getText() + "\n";
+            }
+            if (buttonAnswer4.getVisibility() == View.VISIBLE) {
+                answers += "4. " + buttonAnswer4.getText() + "\n";
+            }
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Привет! Нужна помощь! Какой правильный ответ?\n" + currentQuestion.getQuestion() + "\n" + answers);
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent,"Поделиться"));
         });
